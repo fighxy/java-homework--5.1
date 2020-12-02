@@ -40,7 +40,6 @@ class BonusServiceTest {
     void shouldCalculateForUnRegisteredUnderLimit(){
         BonusService service = new BonusService();
 
-
         long amount = 1000_60;
         boolean registered = false;
         long expected = 10;
@@ -67,4 +66,28 @@ class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
+
+    @Test
+    void shouldCalculatedForUnRegisteredAnd0() {
+        BonusService service = new BonusService();
+
+        long amount = 00000;
+        boolean registered = false;
+        long expected = 0;
+
+        long actual = service.calculate(amount, registered);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldCalculatedForRegisteredAnd0() {
+        BonusService service = new BonusService();
+
+        long amount = 00000;
+        boolean registered = true;
+        long expected = 0;
+
+        long actual = service.calculate(amount, registered);
+        assertEquals(expected, actual);
+    }
 }
